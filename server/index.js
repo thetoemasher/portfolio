@@ -15,7 +15,7 @@ const app = require('express')()
 
 
     app.use(bodyParser.json());
-
+    app.use(express.static(__dirname + '/../build'))
     app.post('/api/email', (req, res) => {
         const {name, email, message} = req.body
         const mailOptions = {
