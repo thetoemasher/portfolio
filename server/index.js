@@ -1,7 +1,9 @@
 require('dotenv').config()
-const app = require('express')()
+const express = require('express')
     , bodyParser = require('body-parser')
     , nodemailer = require('nodemailer');
+
+    const app = express();
 
     const { EMAIL, EMAIL_PASSWORD } = process.env
 
