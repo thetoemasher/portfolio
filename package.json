@@ -1,29 +1,27 @@
 {
-  "name": "portfolio1",
-  "version": "0.1.0",
-  "private": true,
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
   "proxy": "http://localhost:3005",
-  "main": "./server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetoemasher/portfolio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thetoemasher/portfolio/issues"
+  },
+  "homepage": "https://github.com/thetoemasher/portfolio#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "nodemailer": "^4.6.7",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4",
-    "sudo": "^1.0.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "devDependencies": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "nodemailer": "^5.0.0"
+  }
 }
