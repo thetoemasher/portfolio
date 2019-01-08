@@ -203,7 +203,7 @@
 							<ul class="copyright">
 								<li>&copy; Cody Tomesch All rights reserved.</li>
 								<li>Design: <a href="http://html5up.net" target='_blank'>HTML5 UP</a></li>
-								<li>Background photo by <a href='https://www.instagram.com/courtneytomesch/' target='_blank'>Courtney Tomesch</a></li>
+								<li>Background photo by <a href='https://www.courtneytomesch.com/' target='_blank'>Courtney Tomesch</a></li>
 							</ul>
 						</div>
 					</section>
@@ -228,6 +228,7 @@
 					let send = {name, email, message}
 					axios.post('/api/email', send).then(res => {
 						console.log(res.data)
+						alert('Email Sent!')
 					})
 				})
 			</script>
