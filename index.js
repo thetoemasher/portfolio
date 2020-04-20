@@ -1,40 +1,37 @@
-require('dotenv').config()
 const express = require('express')
-    , bodyParser = require('body-parser')
-    , nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
+const creds = require('./credentials.json')
 
-    const app = express();
+const app = express();
+const transport = nodemailer.createTransport({      
+  host: "smtp.gmail.com",
+  auth: {
+    type: "OAuth2",
+    user: "therandomsamurai@gmail.com",
+    clientId: creds.web.client_id,
+    clientSecret: creds.web.client_secret,
+    refreshToken: creds.web.refresh_token
+  }
+});
 
-    const { EMAIL, EMAIL_PASSWORD } = process.env
+app.use(express.json());
+app.use(express.static(__dirname + '/public'))
+app.post('/api/email', (req, res) => {
+    const {name, email, message} = req.body
+    const mailOptions = {
+        from: email,
+        to: 'tomeschcody@gmail.com',
+        subject: 'An inquiry from ' + name,
+        text: `Email: ${email}\n${message}`
 
-    const transport = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-            user: EMAIL,
-            pass: EMAIL_PASSWORD
+    }
+    transport.sendMail(mailOptions, (error, response) => {
+        if(error) {
+            console.log(error)
+        } else {
+            res.sendStatus(200)
         }
     })
+})
 
-
-    app.use(bodyParser.json());
-    app.use(express.static(__dirname + '/public'))
-    app.post('/api/email', (req, res) => {
-        const {name, email, message} = req.body
-        const mailOptions = {
-            from: email,
-            to: 'tomeschcody@gmail.com',
-            subject: 'An inquiry from ' + name,
-            text: `Email: ${email}
-${message}`
-        }
-
-        transport.sendMail(mailOptions, (error, response) => {
-            if(error) {
-                console.log(error)
-            } else {
-                res.sendStatus(200)
-            }
-        })
-    })
-
-    app.listen(3005, () => console.log('Serve us up some ports', 3005))
+app.listen(3005, () => console.log('Serve us up some ports', 3005))
